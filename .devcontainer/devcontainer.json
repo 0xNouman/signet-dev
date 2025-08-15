@@ -1,1 +1,23 @@
 
+{
+  "name": "Bitcoin Signet Dev",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": "true",
+      "installOhMyZsh": "true",
+      "username": "vscode"
+    }
+  },
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git && sudo apt-get install -y libevent-dev libboost-dev libzmq3-dev libsqlite3-dev && git clone https://github.com/bitcoin/bitcoin.git && cd bitcoin && ./autogen.sh && ./configure && make -j$(nproc) && cd src && sudo cp bitcoind bitcoin-cli /usr/local/bin/",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "zsh"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools"
+      ]
+    }
+  }
+}
